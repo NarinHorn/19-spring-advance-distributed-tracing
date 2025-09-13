@@ -1,0 +1,26 @@
+services:
+  db-category:
+    image: postgres
+    environment:
+      POSTGRES_DB: category_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db_data_category:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"
+
+  db-product:
+    image: postgres
+    environment:
+      POSTGRES_DB: product_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db_data_product:/var/lib/postgresql/data
+    ports:
+      - "5436:5432"
+
+volumes:
+  db_data_product:
+  db_data_category:

@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 8761
+eureka:
+  client:
+    register-with-eureka: false # don't register itself to eureka client to avoid circular registration
+    fetch-registry: false # won't try to fetch other registries since it's the server
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
+    wait-time-in-ms-when-sync-empty: 0
+logging:
+  level:
+    com.netflix.eureka: OFF # disable log from server
+    com.netflix.discovery: OFF # disable log from client
