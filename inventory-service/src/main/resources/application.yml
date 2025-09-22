@@ -1,6 +1,6 @@
 spring:
   application:
-    name: product-service
+    name: inventory-service
 
   datasource:
     url: jdbc:postgresql://localhost:5436/product_db
@@ -16,12 +16,8 @@ spring:
         format-sql: true
     database: postgresql
 
-#  # old way: work with Spring Cloud Sleuth which was retired after Boot 2.7. so work only below 2.7
-#  zipkin:
-#    base-url: http://localhost:9411
-#  sleuth:
-#    sampler:
-#      probability: 1.0 # sampler.probability: 1.0 ensures every request is traced (good for debugging). Set to lower in prod.
+server:
+  port: 8084
 
 #eureka:
 #  client:
@@ -29,8 +25,6 @@ spring:
 #    fetch-registry: true
 #    service-url:
 #      defaultZone: http://localhost:8761/eureka/
-server:
-  port: 8082
 
 # --- Tracing Configuration ---
 management:

@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(
         name = "category-service",
-        path = "/api/v1/categories"
+        path = "/api/v1/categories",
+        url = "http://localhost:8081"
 )
 public interface CategoryClient {
     @GetMapping("/{id}")

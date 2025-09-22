@@ -5,12 +5,14 @@ import com.example.model.dto.request.ProductRequest;
 import com.example.model.dto.response.ProductResponse;
 import com.example.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
@@ -41,6 +43,9 @@ public class ProductController {
 
     @GetMapping("/ports")
     public String getPortOfCategory() {
-        return categoryClient.getPort();
+        log.info("Product service is calling category service...");
+        String categoryPort = categoryClient.getPort();
+        log.info("Product service received response.");
+        return "Product service received: " + categoryPort;
     }
 }

@@ -29,12 +29,26 @@ allprojects {
     }
 
     dependencies {
+//        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
         implementation 'org.springframework.boot:spring-boot-starter-web'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
         if (project.name.contains("service")) {
-            implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-            implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+            implementation 'io.github.openfeign:feign-micrometer' // This will now be found
+
+            // Micrometer Tracing Bridge (the successor to Sleuth) (replacement for Sleuth)
+            implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+
+            // Zipkin Reporter to send traces to Zipkin
+            implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+
+            // Optional: expose metrics to Prometheus/Grafana too
+            implementation 'io.micrometer:micrometer-registry-prometheus'
+
+            // For health checks and management endpoints
+            implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+//            implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
             implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5'
             runtimeOnly 'org.postgresql:postgresql'
             implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -42,6 +56,7 @@ allprojects {
             compileOnly 'org.projectlombok:lombok'
             annotationProcessor 'org.projectlombok:lombok'
         }
+
     }
 
     dependencyManagement {

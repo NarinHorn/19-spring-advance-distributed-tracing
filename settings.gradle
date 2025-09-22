@@ -1,5 +1,6 @@
 rootProject.name = 'service-discovery'
 include 'category-service'
-include 'eureka-server'
 include 'product-service'
+include 'inventory-service'
+include 'eureka-server'
 

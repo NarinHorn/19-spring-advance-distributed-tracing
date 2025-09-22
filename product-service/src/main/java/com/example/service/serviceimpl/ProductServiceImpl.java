@@ -7,7 +7,8 @@ import com.example.model.dto.response.CategoryResponse;
 import com.example.model.dto.response.ProductResponse;
 import com.example.repository.ProductRepository;
 import com.example.service.ProductService;
-import jakarta.ws.rs.NotFoundException;
+//import jakarta.ws.rs.NotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse findById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Product id " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Product id " + id + " not found"));
         ResponseEntity<CategoryResponse> response = categoryClient.get(id);
         return product.toResponse(response.getBody());
     }
